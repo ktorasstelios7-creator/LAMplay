@@ -1,0 +1,530 @@
+<!DOCTYPE html>
+<html lang="el">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Παίζουμε;</title>
+<meta name="description" content="Κλείσε θέση για ping pong και ποδοσφαιράκι στα διαλείμματα.">
+<meta name="theme-color" content="#0f6e5a">
+<link rel="icon" type="image/png" href="data:image/png;base64,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">
+<link rel="apple-touch-icon" href="data:image/png;base64,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">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="Παίζουμε;">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,800&family=Commissioner:wght@400;500;600;700&display=swap">
+<style>
+:root{
+  --bg:#f3f1ea; --paper:#ffffff; --ink:#15211d; --muted:#5a6762; --line:#dcd8cc;
+  --pp:#d9480f; --pp-soft:#fde4d8; --pod:#0f6e5a; --pod-soft:#d6efe8;
+  --accent:#0f6e5a; --warn:#a15c00; --warn-soft:#fdf0d5; --bad:#b42318; --ok:#1f7a3a; --ok-soft:#dcf2e2;
+  --display:"Bricolage Grotesque","Segoe UI",system-ui,sans-serif;
+  --body:"Commissioner","Segoe UI",system-ui,sans-serif;
+  color-scheme:light;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --bg:#101614; --paper:#18211e; --ink:#e8efec; --muted:#9fb0a9; --line:#2b3733;
+  --pp:#ff8a57; --pp-soft:#3a2219; --pod:#4cc9a6; --pod-soft:#163029;
+  --accent:#4cc9a6; --warn:#f0b04a; --warn-soft:#352a14; --bad:#ff7b6e; --ok:#6fd38f; --ok-soft:#173022; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#101614; --paper:#18211e; --ink:#e8efec; --muted:#9fb0a9; --line:#2b3733;
+  --pp:#ff8a57; --pp-soft:#3a2219; --pod:#4cc9a6; --pod-soft:#163029;
+  --accent:#4cc9a6; --warn:#f0b04a; --warn-soft:#352a14; --bad:#ff7b6e; --ok:#6fd38f; --ok-soft:#173022; color-scheme:dark}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--body);font-size:16px;line-height:1.5;
+  padding:env(safe-area-inset-top,0) max(16px,env(safe-area-inset-right,0)) env(safe-area-inset-bottom,0) max(16px,env(safe-area-inset-left,0))}
+.wrap{max-width:860px;margin:0 auto;padding:28px 0 48px;display:flex;flex-direction:column;gap:22px}
+header{display:flex;gap:16px;align-items:center}
+header img{width:64px;height:64px;border-radius:16px;flex:none}
+h1{font-family:var(--display);font-weight:800;font-size:clamp(30px,7vw,44px);line-height:1;margin:0;letter-spacing:-.01em}
+.school{color:var(--muted);font-size:14px;margin-top:4px}
+.demo{background:var(--warn-soft);color:var(--warn);border-radius:10px;padding:10px 14px;font-size:14px}
+nav.tabs{display:flex;gap:6px;overflow-x:auto;scrollbar-width:none;border-bottom:1px solid var(--line);margin:0 -2px}
+nav.tabs::-webkit-scrollbar{display:none}
+nav.tabs button{font:inherit;font-weight:600;font-size:15px;background:none;border:0;color:var(--muted);padding:10px 12px;border-bottom:3px solid transparent;cursor:pointer;white-space:nowrap}
+nav.tabs button[aria-selected="true"]{color:var(--ink);border-bottom-color:var(--accent)}
+.badge{display:inline-block;min-width:20px;padding:0 6px;border-radius:999px;background:var(--pp);color:#fff;font-size:12px;line-height:20px;text-align:center;margin-left:4px}
+section[hidden]{display:none}
+h2{font-family:var(--display);font-weight:800;font-size:24px;margin:0 0 4px}
+h3{font-size:15px;margin:0 0 8px;color:var(--muted);font-weight:600;letter-spacing:.02em}
+.card{background:var(--paper);border:1px solid var(--line);border-radius:14px;padding:18px}
+.stack{display:flex;flex-direction:column;gap:18px}
+.row{display:flex;flex-wrap:wrap;gap:8px}
+.choice{font:inherit;cursor:pointer;background:var(--paper);color:var(--ink);border:2px solid var(--line);border-radius:12px;padding:10px 14px;font-weight:600;text-align:left}
+.choice small{display:block;font-weight:400;color:var(--muted);font-size:13px}
+.choice[aria-pressed="true"]{border-color:var(--accent);background:color-mix(in srgb,var(--accent) 10%,var(--paper))}
+.choice:disabled{opacity:.45;cursor:not-allowed}
+.games{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.game{display:flex;gap:12px;align-items:center;padding:14px}
+.game svg{width:40px;height:40px;flex:none}
+.game.pp svg{color:var(--pp)} .game.pod svg{color:var(--pod)}
+.game.pp[aria-pressed="true"]{border-color:var(--pp);background:var(--pp-soft)}
+.game.pod[aria-pressed="true"]{border-color:var(--pod);background:var(--pod-soft)}
+.brks{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.brks .choice{text-align:center;min-width:0;padding:10px 6px}
+label{display:flex;flex-direction:column;gap:4px;font-weight:600;font-size:14px}
+input,textarea,select{font:inherit;font-weight:400;color:var(--ink);background:var(--bg);border:1px solid var(--line);border-radius:10px;padding:10px 12px;width:100%}
+textarea{min-height:90px;resize:vertical}
+input:focus,textarea:focus,select:focus,button:focus-visible{outline:3px solid color-mix(in srgb,var(--accent) 45%,transparent);outline-offset:1px}
+.grid2{display:grid;grid-template-columns:2fr 1fr;gap:10px}
+.mates{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px}
+.hint{color:var(--muted);font-size:13.5px;margin:0}
+.btn{font:inherit;font-weight:700;cursor:pointer;border:0;border-radius:12px;padding:12px 18px;background:var(--accent);color:var(--paper)}
+.btn.sec{background:transparent;color:var(--ink);border:1px solid var(--line);font-weight:600}
+.btn.small{padding:6px 12px;font-size:14px;border-radius:9px}
+.btn.ok{background:var(--ok);color:var(--paper)} .btn.bad{background:transparent;color:var(--bad);border:1px solid var(--bad)}
+.btn:disabled{opacity:.5;cursor:not-allowed}
+.msg{border-radius:10px;padding:12px 14px;font-size:15px}
+.msg.ok{background:var(--ok-soft);color:var(--ok)} .msg.err{background:color-mix(in srgb,var(--bad) 12%,var(--paper));color:var(--bad)}
+.board{width:100%;border-collapse:separate;border-spacing:8px;margin:-8px}
+.board th{font-size:13px;color:var(--muted);text-align:left;font-weight:600}
+.board td{background:var(--paper);border:1px solid var(--line);border-radius:12px;padding:10px 12px;vertical-align:top;width:45%}
+.board td.brk{width:10%;background:none;border:0;font-family:var(--display);font-weight:800;font-size:20px;padding:10px 0}
+.board td.pp{border-left:5px solid var(--pp)} .board td.pod{border-left:5px solid var(--pod)}
+.free{color:var(--muted);font-size:14px}
+.who{font-weight:600}
+.with{font-size:14px;color:var(--muted)}
+.st{display:inline-block;font-size:12px;font-weight:700;border-radius:999px;padding:1px 8px;margin-top:4px}
+.st.pending{background:var(--warn-soft);color:var(--warn)} .st.approved{background:var(--ok-soft);color:var(--ok)}
+.ann{border-left:5px solid var(--accent)}
+.ann.pin{border-left-color:var(--pp)}
+.ann .date{font-size:13px;color:var(--muted)}
+.ann h4{margin:2px 0 6px;font-size:18px;font-family:var(--display)}
+.ann p{margin:0;white-space:pre-wrap}
+.item{display:flex;flex-wrap:wrap;gap:10px;justify-content:space-between;align-items:center;border-top:1px solid var(--line);padding:12px 0}
+.item:first-of-type{border-top:0}
+.item .meta{font-size:13.5px;color:var(--muted)}
+.code{font-family:ui-monospace,Menlo,Consolas,monospace;font-size:22px;font-weight:700;letter-spacing:.12em;background:var(--bg);padding:4px 10px;border-radius:8px}
+.reply{background:var(--pod-soft);border-radius:10px;padding:10px 12px;margin-top:8px;white-space:pre-wrap}
+.rules{margin:0;padding-left:20px;color:var(--muted);font-size:14.5px}
+footer{color:var(--muted);font-size:13.5px;display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;border-top:1px solid var(--line);padding-top:16px}
+footer button{font:inherit;background:none;border:0;color:var(--muted);text-decoration:underline;cursor:pointer;padding:0}
+.toggle{display:flex;flex-direction:row;align-items:center;gap:10px;font-weight:500}
+.toggle input{width:20px;height:20px}
+.chip{display:inline-flex;gap:6px;align-items:center;border:1px solid var(--line);border-radius:999px;padding:3px 6px 3px 12px;font-size:14px}
+.chip button{background:none;border:0;color:var(--bad);font-size:18px;line-height:1;cursor:pointer}
+@media (max-width:560px){.games,.grid2{grid-template-columns:1fr}.mates{grid-template-columns:1fr}.board td{padding:8px}}
+</style>
+<script>
+// ===== Ρυθμίσεις του «Παίζουμε;» =====
+// 1) Όσο το firebase είναι null, η εφαρμογή δουλεύει σε ΔΟΚΙΜΑΣΤΙΚΗ λειτουργία:
+//    οι κρατήσεις μένουν μόνο στη συσκευή που τις έκανε. Κωδικός υπευθύνου στη δοκιμή: 1234
+// 2) Για να βλέπουν όλοι οι μαθητές τις ίδιες κρατήσεις, επικόλλησε εδώ το firebaseConfig
+//    του Firebase project σου και γράψε το email του υπευθύνου (βλ. ΟΔΗΓΙΕΣ.md).
+window.PAIZOUME_CONFIG = {
+  school: "",            // π.χ. "Λύκειο Αγίου Νικολάου" (προαιρετικό, φαίνεται στην κορυφή)
+  adminEmail: "ktorasstelios7@gmail.com",
+  firebase: {
+    apiKey: "AIzaSyAYkrxgUQFlSRy-LQVEMS5u6xHPmRnElSM",
+    authDomain: "lamplay-57d2f.firebaseapp.com",
+    projectId: "lamplay-57d2f",
+    storageBucket: "lamplay-57d2f.firebasestorage.app",
+    messagingSenderId: "618471238407",
+    appId: "1:618471238407:web:8039df117d0eb70d3373a2"
+  }
+  /* Παράδειγμα:
+  firebase: {
+    apiKey: "…",
+    authDomain: "…firebaseapp.com",
+    projectId: "…",
+    storageBucket: "…appspot.com",
+    messagingSenderId: "…",
+    appId: "…"
+  }
+  */
+};
+</script>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <img src="data:image/png;base64,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" alt="" width="64" height="64">
+    <div><h1>Παίζουμε;</h1><div class="school" id="school">Ping pong και ποδοσφαιράκι στα διαλείμματα</div></div>
+  </header>
+  <div class="demo" id="demo" hidden>Δοκιμαστική λειτουργία: οι κρατήσεις μένουν μόνο σε αυτή τη συσκευή μέχρι να συνδεθεί η βάση δεδομένων.</div>
+
+  <nav class="tabs" role="tablist">
+    <button role="tab" data-tab="book" aria-selected="true">Κλείσε θέση</button>
+    <button role="tab" data-tab="board" aria-selected="false">Ποιος παίζει</button>
+    <button role="tab" data-tab="news" aria-selected="false">Ανακοινώσεις<span class="badge" id="newsBadge" hidden></span></button>
+    <button role="tab" data-tab="ask" aria-selected="false">Ρώτα τον υπεύθυνο</button>
+    <button role="tab" data-tab="admin" aria-selected="false" id="adminTab" hidden>Υπεύθυνος<span class="badge" id="pendBadge" hidden></span></button>
+  </nav>
+
+  <!-- ΚΡΑΤΗΣΗ -->
+  <section id="tab-book" class="stack">
+    <div class="card stack">
+      <div><h3>1. ΠΟΙΑ ΜΕΡΑ</h3><div class="row" id="days"></div></div>
+      <div><h3>2. ΤΙ ΠΑΙΖΕΤΕ</h3>
+        <div class="games">
+          <button type="button" class="choice game pp" data-game="pp" aria-pressed="false">
+            <svg viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"><circle cx="16" cy="16" r="11" fill="currentColor" fill-opacity=".18"/><path d="M23.5 23.5 33 33"/><circle cx="33" cy="9" r="3" fill="currentColor"/></svg>
+            <span>Ping pong<small>2 ή 4 παίκτες</small></span></button>
+          <button type="button" class="choice game pod" data-game="pod" aria-pressed="false">
+            <svg viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"><rect x="5" y="9" width="30" height="22" rx="3" fill="currentColor" fill-opacity=".14"/><path d="M20 9v22M2 16v8M38 16v8"/><circle cx="20" cy="20" r="3.5"/></svg>
+            <span>Ποδοσφαιράκι<small>2 ή 4 παίκτες</small></span></button>
+        </div></div>
+      <div><h3>3. ΠΟΙΟ ΔΙΑΛΕΙΜΜΑ</h3><div class="brks" id="brks"></div></div>
+      <div class="stack" style="gap:10px"><h3 style="margin:0">4. ΠΟΙΟΙ ΠΑΙΖΟΥΝ</h3>
+        <div class="grid2">
+          <label>Το όνομά σου<input id="fName" maxlength="40" autocomplete="off" placeholder="π.χ. Νίκος Π."></label>
+          <label>Τμήμα<input id="fCls" maxlength="8" autocomplete="off" placeholder="π.χ. Β2"></label>
+        </div>
+        <div class="mates">
+          <label>Συμπαίκτης/τρια<input class="mate" maxlength="40" autocomplete="off"></label>
+          <label>Συμπαίκτης/τρια<input class="mate" maxlength="40" autocomplete="off" placeholder="(προαιρετικό)"></label>
+          <label>Συμπαίκτης/τρια<input class="mate" maxlength="40" autocomplete="off" placeholder="(προαιρετικό)"></label>
+        </div>
+        <p class="hint">Γράψε μόνο μικρό όνομα και το αρχικό του επιθέτου. Τα ονόματα φαίνονται στον πίνακα «Ποιος παίζει».</p>
+      </div>
+      <div id="bookMsg" role="status"></div>
+      <div><button class="btn" id="bookBtn" type="button">Κλείσε θέση</button></div>
+    </div>
+    <div class="card">
+      <h3>ΟΙ ΚΑΝΟΝΕΣ</h3>
+      <ul class="rules">
+        <li>Μία κράτηση ανά μαθητή τη μέρα, για να παίξουν όλοι.</li>
+        <li>Μπορείς να κλείσεις θέση για τις επόμενες πέντε σχολικές μέρες.</li>
+        <li>Η κράτηση ισχύει όταν εγκριθεί από τον υπεύθυνο (θα το δεις στο «Ποιος παίζει»).</li>
+        <li>Αν δεν μπορείτε να έρθετε, στείλτε μήνυμα στο «Ρώτα τον υπεύθυνο» για να ελευθερωθεί η θέση.</li>
+        <li>Προσέχουμε τον εξοπλισμό και τον αφήνουμε τακτοποιημένο για τους επόμενους.</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ΠΙΝΑΚΑΣ -->
+  <section id="tab-board" class="stack" hidden>
+    <div class="row" id="boardDays"></div>
+    <div class="card" style="padding:12px 14px"><table class="board" id="board"></table></div>
+  </section>
+
+  <!-- ΑΝΑΚΟΙΝΩΣΕΙΣ -->
+  <section id="tab-news" class="stack" hidden><div id="newsList" class="stack"></div></section>
+
+  <!-- ΕΡΩΤΗΣΗ -->
+  <section id="tab-ask" class="stack" hidden>
+    <div class="card stack" style="gap:12px">
+      <h2>Ρώτα τον υπεύθυνο</h2>
+      <p class="hint" style="font-size:15px">Για ακύρωση κράτησης, πρόβλημα με τον εξοπλισμό ή οποιαδήποτε ερώτηση. Το μήνυμά σου το βλέπει μόνο ο υπεύθυνος.</p>
+      <div class="grid2">
+        <label>Το όνομά σου<input id="qName" maxlength="40" autocomplete="off"></label>
+        <label>Τμήμα<input id="qCls" maxlength="8" autocomplete="off"></label>
+      </div>
+      <label>Το μήνυμά σου<textarea id="qText" maxlength="600"></textarea></label>
+      <div id="askMsg" role="status"></div>
+      <div><button class="btn" id="askBtn" type="button">Στείλε</button></div>
+    </div>
+    <div class="card stack" style="gap:12px">
+      <h3 style="margin:0">ΕΧΕΙΣ ΗΔΗ ΚΩΔΙΚΟ; ΔΕΣ ΤΗΝ ΑΠΑΝΤΗΣΗ</h3>
+      <div class="row"><input id="codeIn" maxlength="6" placeholder="π.χ. K7P3QA" style="max-width:180px;text-transform:uppercase"><button class="btn sec" id="codeBtn" type="button">Έλεγχος</button></div>
+      <div id="codeOut"></div>
+    </div>
+  </section>
+
+  <!-- ΥΠΕΥΘΥΝΟΣ -->
+  <section id="tab-admin" class="stack" hidden>
+    <div class="card stack" id="loginBox" style="gap:12px">
+      <h2>Χώρος υπευθύνου</h2>
+      <label id="emailLbl">Email<input id="aEmail" type="email" autocomplete="username"></label>
+      <label>Κωδικός<input id="aPass" type="password" autocomplete="current-password"></label>
+      <div id="loginMsg" role="status"></div>
+      <div><button class="btn" id="loginBtn" type="button">Είσοδος</button></div>
+    </div>
+    <div id="adminBox" class="stack" hidden>
+      <div class="card"><h2>Για έγκριση</h2><div id="pendList"></div></div>
+      <div class="card"><h2>Όλες οι κρατήσεις</h2><p class="hint">Η διαγραφή ελευθερώνει τη θέση.</p><div id="allList"></div></div>
+      <div class="card stack" style="gap:12px"><h2>Νέα ανακοίνωση</h2>
+        <label>Τίτλος<input id="nTitle" maxlength="80"></label>
+        <label>Κείμενο<textarea id="nText" maxlength="1200"></textarea></label>
+        <label class="toggle"><input type="checkbox" id="nPin"> Καρφιτσωμένη στην κορυφή</label>
+        <div><button class="btn" id="nBtn" type="button">Δημοσίευση</button></div>
+        <div id="adminNews"></div></div>
+      <div class="card"><h2>Μηνύματα μαθητών</h2><div id="msgList"></div></div>
+      <div class="card stack" style="gap:12px"><h2>Ρυθμίσεις</h2>
+        <label class="toggle"><input type="checkbox" id="sAuto"> Αυτόματη έγκριση κρατήσεων</label>
+        <div><h3>Μέρες χωρίς παιχνίδι (αργίες, εκδρομές, εξετάσεις)</h3>
+          <div class="row"><input type="date" id="sDate" style="max-width:200px"><button class="btn sec small" id="sDateBtn" type="button">Προσθήκη</button></div>
+          <div class="row" id="sDates" style="margin-top:10px"></div></div>
+      </div>
+      <div><button class="btn sec" id="logoutBtn" type="button">Έξοδος</button></div>
+    </div>
+  </section>
+
+  <footer>
+    <span>Στέλιος Κτώρας, Καθηγητής Σ.Ε.Α.</span>
+    <button type="button" id="adminLink">Χώρος υπευθύνου</button>
+  </footer>
+</div>
+
+<script type="module">
+const CFG = window.PAIZOUME_CONFIG || {};
+const GAMES = {pp:'Ping pong', pod:'Ποδοσφαιράκι'};
+const BRKS = [1,2,3];
+const DAYN = ['Κυριακή','Δευτέρα','Τρίτη','Τετάρτη','Πέμπτη','Παρασκευή','Σάββατο'];
+const MON = ['Ιαν','Φεβ','Μαρ','Απρ','Μαΐ','Ιουν','Ιουλ','Αυγ','Σεπ','Οκτ','Νοε','Δεκ'];
+const $ = s => document.querySelector(s);
+const esc = s => String(s ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const iso = d => `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}-${String(d.getDate()).padStart(2,'0')}`;
+const parse = s => { const [y,m,d] = s.split('-').map(Number); return new Date(y, m-1, d); };
+const nice = s => { const d = parse(s); return `${DAYN[d.getDay()]} ${d.getDate()} ${MON[d.getMonth()]}`; };
+const short = s => { const d = parse(s); return `${DAYN[d.getDay()].slice(0,3)} ${d.getDate()}/${d.getMonth()+1}`; };
+const norm = s => s.trim().toLocaleLowerCase('el').normalize('NFD').replace(/[̀-ͯ]/g,'').replace(/\s+/g,' ');
+const slotId = (date, game, brk) => `${date}_${game}_${brk}`;
+const newCode = () => { const a = 'ABCDEFGHJKLMNPQRSTUVWXYZ23456789'; let c=''; const r = crypto.getRandomValues(new Uint8Array(6)); r.forEach(x => c += a[x % a.length]); return c; };
+const fmtTime = ms => { const d = new Date(ms); return `${d.getDate()} ${MON[d.getMonth()]}, ${String(d.getHours()).padStart(2,'0')}:${String(d.getMinutes()).padStart(2,'0')}`; };
+function lsGet(k, def){ try { const v = localStorage.getItem(k); return v ? JSON.parse(v) : def; } catch(e){ return def; } }
+function lsSet(k, v){ try { localStorage.setItem(k, JSON.stringify(v)); } catch(e){} }
+
+/* ===================== Αποθήκη δεδομένων ===================== */
+let state = { bookings:{}, announcements:[], settings:{autoApprove:false, closed:[]}, messages:[] };
+let isAdmin = false;
+const listeners = [];
+const emit = () => listeners.forEach(f => f());
+
+function demoStore(){
+  const KEY = 'paizoume-demo';
+  const load = () => { const d = lsGet(KEY, null); if (d) state = {...state, ...d}; };
+  const save = () => { lsSet(KEY, {bookings:state.bookings, announcements:state.announcements, settings:state.settings, messages:state.messages}); emit(); };
+  load();
+  if (!state.announcements.length) state.announcements = [{id:'w', title:'Καλώς ήρθατε στο «Παίζουμε;»', text:'Κλείστε θέση για ping pong ή ποδοσφαιράκι για το 1ο, 2ο ή 3ο διάλειμμα. Καλή διασκέδαση!', pinned:true, created:Date.now()}];
+  window.addEventListener('storage', e => { if (e.key === KEY){ load(); emit(); } });
+  return {
+    demo:true,
+    start(){ emit(); },
+    async createBooking(b){ const id = slotId(b.date,b.game,b.brk); if (state.bookings[id]) throw new Error('taken'); state.bookings[id] = {...b, id, created:Date.now()}; save(); },
+    async updateBooking(id, p){ Object.assign(state.bookings[id], p); save(); },
+    async deleteBooking(id){ delete state.bookings[id]; save(); },
+    async addNews(n){ state.announcements.push({...n, id:newCode(), created:Date.now()}); save(); },
+    async deleteNews(id){ state.announcements = state.announcements.filter(a => a.id !== id); save(); },
+    async sendMessage(m){ const code = newCode(); state.messages.push({...m, id:code, reply:'', created:Date.now()}); save(); return code; },
+    async getMessage(code){ return state.messages.find(m => m.id === code) || null; },
+    async reply(id, text){ const m = state.messages.find(x => x.id === id); m.reply = text; m.repliedAt = Date.now(); save(); },
+    async deleteMessage(id){ state.messages = state.messages.filter(m => m.id !== id); save(); },
+    async saveSettings(s){ state.settings = {...state.settings, ...s}; save(); },
+    async login(email, pass){ if (pass !== '1234') throw new Error('Λάθος κωδικός (στη δοκιμαστική λειτουργία είναι 1234).'); isAdmin = true; emit(); },
+    async logout(){ isAdmin = false; emit(); }
+  };
+}
+
+async function firebaseStore(){
+  const V = '10.12.2', B = `https://www.gstatic.com/firebasejs/${V}/`;
+  const [{initializeApp}, fs, au] = await Promise.all([import(B+'firebase-app.js'), import(B+'firebase-firestore.js'), import(B+'firebase-auth.js')]);
+  const app = initializeApp(CFG.firebase);
+  const db = fs.getFirestore(app), auth = au.getAuth(app);
+  const {collection, doc, query, where, onSnapshot, setDoc, updateDoc, deleteDoc, addDoc, getDoc, serverTimestamp} = fs;
+  const ms = t => t && t.toMillis ? t.toMillis() : (t || Date.now());
+  let unMsg = null;
+  return {
+    demo:false,
+    start(){
+      const from = iso(new Date(Date.now() - 14*864e5));
+      onSnapshot(query(collection(db,'bookings'), where('date','>=',from)), s => { const o = {}; s.forEach(d => o[d.id] = {...d.data(), id:d.id, created:ms(d.data().created)}); state.bookings = o; emit(); });
+      onSnapshot(collection(db,'announcements'), s => { state.announcements = s.docs.map(d => ({...d.data(), id:d.id, created:ms(d.data().created)})); emit(); });
+      onSnapshot(doc(db,'settings','main'), d => { state.settings = {autoApprove:false, closed:[], ...(d.exists() ? d.data() : {})}; emit(); }, () => {});
+      au.onAuthStateChanged(auth, u => {
+        isAdmin = !!u && (!CFG.adminEmail || (u.email||'').toLowerCase() === CFG.adminEmail.toLowerCase());
+        if (unMsg){ unMsg(); unMsg = null; }
+        if (isAdmin) unMsg = onSnapshot(collection(db,'messages'), s => { state.messages = s.docs.map(d => ({...d.data(), id:d.id, created:ms(d.data().created), repliedAt:ms(d.data().repliedAt)})); emit(); });
+        else state.messages = [];
+        emit();
+      });
+    },
+    async createBooking(b){
+      try { await setDoc(doc(db,'bookings',slotId(b.date,b.game,b.brk)), {...b, created:serverTimestamp()}); }
+      catch(e){ if (e.code === 'permission-denied') throw new Error('taken'); throw e; }
+    },
+    updateBooking:(id,p) => updateDoc(doc(db,'bookings',id), p),
+    deleteBooking:id => deleteDoc(doc(db,'bookings',id)),
+    addNews:n => addDoc(collection(db,'announcements'), {...n, created:serverTimestamp()}),
+    deleteNews:id => deleteDoc(doc(db,'announcements',id)),
+    async sendMessage(m){ const code = newCode(); await setDoc(doc(db,'messages',code), {...m, reply:'', created:serverTimestamp()}); return code; },
+    async getMessage(code){ try { const d = await getDoc(doc(db,'messages',code)); return d.exists() ? {...d.data(), id:d.id, repliedAt:ms(d.data().repliedAt)} : null; } catch(e){ return null; } },
+    reply:(id,text) => updateDoc(doc(db,'messages',id), {reply:text, repliedAt:serverTimestamp()}),
+    deleteMessage:id => deleteDoc(doc(db,'messages',id)),
+    saveSettings:s => setDoc(doc(db,'settings','main'), s, {merge:true}),
+    async login(email, pass){
+      try { await au.signInWithEmailAndPassword(auth, email, pass); }
+      catch(e){ throw new Error('Λάθος email ή κωδικός.'); }
+      if (CFG.adminEmail && email.toLowerCase() !== CFG.adminEmail.toLowerCase()){ await au.signOut(auth); throw new Error('Αυτός ο λογαριασμός δεν είναι υπευθύνου.'); }
+    },
+    logout:() => au.signOut(auth)
+  };
+}
+
+let store;
+try { store = CFG.firebase ? await firebaseStore() : demoStore(); }
+catch(e){ console.error(e); store = demoStore(); }
+if (store.demo){ $('#demo').hidden = false; $('#emailLbl').hidden = true; }
+if (CFG.school) $('#school').textContent = CFG.school + ' · Ping pong και ποδοσφαιράκι στα διαλείμματα';
+
+/* ===================== Μέρες ===================== */
+function schoolDays(n){
+  const out = [], d = new Date(); d.setHours(0,0,0,0);
+  const closed = new Set(state.settings.closed || []);
+  while (out.length < n){ const w = d.getDay(); if (w > 0 && w < 6 && !closed.has(iso(d))) out.push(iso(d)); d.setDate(d.getDate()+1); }
+  return out;
+}
+
+/* ===================== Καρτέλες ===================== */
+let tab = 'book';
+function showTab(t){
+  tab = t;
+  document.querySelectorAll('nav.tabs button').forEach(b => b.setAttribute('aria-selected', String(b.dataset.tab === t)));
+  document.querySelectorAll('section[id^="tab-"]').forEach(s => s.hidden = s.id !== 'tab-'+t);
+  if (t === 'news'){ lsSet('paizoume-seen', Date.now()); renderBadges(); }
+}
+document.querySelectorAll('nav.tabs button').forEach(b => b.onclick = () => showTab(b.dataset.tab));
+$('#adminLink').onclick = () => { $('#adminTab').hidden = false; showTab('admin'); window.scrollTo(0,0); };
+if (location.hash === '#admin'){ $('#adminTab').hidden = false; showTab('admin'); }
+
+/* ===================== Κράτηση ===================== */
+const sel = {date:null, game:null, brk:null};
+const taken = (d,g,b) => !!state.bookings[slotId(d,g,b)];
+function renderBook(){
+  const days = schoolDays(5);
+  if (!days.includes(sel.date)) sel.date = days[0];
+  $('#days').innerHTML = days.map(d => `<button type="button" class="choice" data-d="${d}" aria-pressed="${d===sel.date}">${esc(nice(d).split(' ')[0])}<small>${esc(nice(d).split(' ').slice(1).join(' '))}</small></button>`).join('');
+  document.querySelectorAll('.game').forEach(b => b.setAttribute('aria-pressed', String(b.dataset.game === sel.game)));
+  if (sel.brk && sel.game && taken(sel.date, sel.game, sel.brk)) sel.brk = null;
+  $('#brks').innerHTML = BRKS.map(b => {
+    const t = sel.game ? taken(sel.date, sel.game, b) : false;
+    return `<button type="button" class="choice" data-b="${b}" aria-pressed="${b===sel.brk}" ${t?'disabled':''}>${b}ο διάλειμμα<small>${!sel.game ? 'διάλεξε παιχνίδι' : t ? 'πιασμένο' : 'ελεύθερο'}</small></button>`;
+  }).join('');
+}
+$('#days').onclick = e => { const b = e.target.closest('[data-d]'); if (b){ sel.date = b.dataset.d; renderBook(); } };
+document.querySelectorAll('.game').forEach(b => b.onclick = () => { sel.game = b.dataset.game; renderBook(); });
+$('#brks').onclick = e => { const b = e.target.closest('[data-b]'); if (b && !b.disabled){ sel.brk = Number(b.dataset.b); renderBook(); } };
+const say = (el, cls, html) => { $(el).innerHTML = html ? `<div class="msg ${cls}">${html}</div>` : ''; };
+
+$('#bookBtn').onclick = async () => {
+  const name = $('#fName').value.trim(), cls = $('#fCls').value.trim().toUpperCase();
+  const mates = [...document.querySelectorAll('.mate')].map(i => i.value.trim()).filter(Boolean);
+  if (!sel.game) return say('#bookMsg','err','Διάλεξε τι θα παίξετε.');
+  if (!sel.brk) return say('#bookMsg','err','Διάλεξε διάλειμμα.');
+  if (name.length < 2 || !cls) return say('#bookMsg','err','Γράψε το όνομά σου και το τμήμα σου.');
+  if (!mates.length) return say('#bookMsg','err','Γράψε τουλάχιστον έναν συμπαίκτη.');
+  const players = [name, ...mates].map(norm);
+  const clash = Object.values(state.bookings).find(b => b.date === sel.date && [b.name, ...(b.mates||[])].map(norm).some(p => players.includes(p)));
+  if (clash) return say('#bookMsg','err',`Κάποιος από την παρέα σας έχει ήδη κράτηση εκείνη τη μέρα (${esc(GAMES[clash.game])}, ${clash.brk}ο διάλειμμα). Μία κράτηση τη μέρα, για να παίξουν όλοι.`);
+  $('#bookBtn').disabled = true;
+  try {
+    const status = state.settings.autoApprove ? 'approved' : 'pending';
+    const {date, game, brk} = sel;
+    await store.createBooking({date, game, brk, name, cls, mates, status});
+    say('#bookMsg','ok',`Έκλεισες ${esc(GAMES[game])}, ${brk}ο διάλειμμα, ${esc(nice(date))}. ${status==='approved' ? 'Η κράτηση εγκρίθηκε.' : 'Θα εμφανιστεί ως εγκεκριμένη στο «Ποιος παίζει» μόλις την εγκρίνει ο υπεύθυνος.'}`);
+    lsSet('paizoume-me', {name, cls}); if (!$('#qName').value){ $('#qName').value = name; $('#qCls').value = cls; }
+    document.querySelectorAll('.mate').forEach(i => i.value = ''); sel.brk = null; renderBook();
+  } catch(e){
+    say('#bookMsg','err', e.message === 'taken' ? 'Μόλις το έκλεισε κάποιος άλλος. Διάλεξε άλλο διάλειμμα.' : 'Κάτι πήγε στραβά. Δοκίμασε ξανά.');
+  } finally { $('#bookBtn').disabled = false; }
+};
+const me = lsGet('paizoume-me', null);
+if (me){ $('#fName').value = me.name; $('#fCls').value = me.cls; $('#qName').value = me.name; $('#qCls').value = me.cls; }
+
+/* ===================== Πίνακας ===================== */
+let bDay = null;
+function renderBoard(){
+  const days = schoolDays(5);
+  if (!days.includes(bDay)) bDay = days[0];
+  $('#boardDays').innerHTML = days.map(d => `<button type="button" class="choice" data-d="${d}" aria-pressed="${d===bDay}">${esc(short(d))}</button>`).join('');
+  const cell = (g,b) => {
+    const k = state.bookings[slotId(bDay,g,b)];
+    if (!k) return `<td class="${g}"><span class="free">Ελεύθερο</span></td>`;
+    return `<td class="${g}"><div class="who">${esc(k.name)} <span class="with">· ${esc(k.cls)}</span></div>${k.mates?.length ? `<div class="with">με ${esc(k.mates.join(', '))}</div>` : ''}<span class="st ${k.status}">${k.status==='approved'?'Εγκρίθηκε':'Σε αναμονή'}</span></td>`;
+  };
+  $('#board').innerHTML = `<thead><tr><th></th><th>Ping pong</th><th>Ποδοσφαιράκι</th></tr></thead><tbody>${BRKS.map(b => `<tr><td class="brk">${b}ο</td>${cell('pp',b)}${cell('pod',b)}</tr>`).join('')}</tbody>`;
+}
+$('#boardDays').onclick = e => { const b = e.target.closest('[data-d]'); if (b){ bDay = b.dataset.d; renderBoard(); } };
+
+/* ===================== Ανακοινώσεις ===================== */
+const sortedNews = () => [...state.announcements].sort((a,b) => (b.pinned?1:0)-(a.pinned?1:0) || b.created-a.created);
+function renderNews(){
+  const n = sortedNews();
+  $('#newsList').innerHTML = n.length ? n.map(a => `<article class="card ann ${a.pinned?'pin':''}"><div class="date">${a.pinned?'📌 ':''}${esc(fmtTime(a.created))}</div><h4>${esc(a.title)}</h4><p>${esc(a.text)}</p></article>`).join('') : '<p class="hint">Δεν υπάρχουν ανακοινώσεις.</p>';
+  $('#adminNews').innerHTML = n.map(a => `<div class="item"><div><b>${esc(a.title)}</b><div class="meta">${esc(fmtTime(a.created))}${a.pinned?' · καρφιτσωμένη':''}</div></div><button class="btn bad small" data-delnews="${esc(a.id)}">Διαγραφή</button></div>`).join('');
+}
+function renderBadges(){
+  const seen = lsGet('paizoume-seen', 0);
+  const nNew = state.announcements.filter(a => a.created > seen).length;
+  $('#newsBadge').hidden = !nNew || tab === 'news'; $('#newsBadge').textContent = nNew;
+  const p = Object.values(state.bookings).filter(b => b.status === 'pending').length + state.messages.filter(m => !m.reply).length;
+  $('#pendBadge').hidden = !(isAdmin && p); $('#pendBadge').textContent = p;
+}
+
+/* ===================== Μηνύματα ===================== */
+$('#askBtn').onclick = async () => {
+  const name = $('#qName').value.trim(), cls = $('#qCls').value.trim().toUpperCase(), text = $('#qText').value.trim();
+  if (!name || !cls || text.length < 3) return say('#askMsg','err','Συμπλήρωσε όνομα, τμήμα και μήνυμα.');
+  $('#askBtn').disabled = true;
+  try {
+    const code = await store.sendMessage({name, cls, text});
+    const mine = lsGet('paizoume-codes', []); mine.unshift(code); lsSet('paizoume-codes', mine.slice(0,10));
+    say('#askMsg','ok',`Στάλθηκε! Ο κωδικός σου είναι <span class="code">${code}</span><br>Κράτησέ τον για να δεις την απάντηση εδώ από κάτω.`);
+    $('#qText').value = ''; $('#codeIn').value = code;
+  } catch(e){ say('#askMsg','err','Δεν στάλθηκε. Δοκίμασε ξανά.'); }
+  finally { $('#askBtn').disabled = false; }
+};
+$('#codeBtn').onclick = async () => {
+  const code = $('#codeIn').value.trim().toUpperCase();
+  if (code.length !== 6) return say('#codeOut','err','Ο κωδικός έχει 6 χαρακτήρες.');
+  const m = await store.getMessage(code);
+  if (!m) return say('#codeOut','err','Δεν βρέθηκε μήνυμα με αυτόν τον κωδικό.');
+  $('#codeOut').innerHTML = `<div class="hint">Το μήνυμά σου:</div><div style="white-space:pre-wrap">${esc(m.text)}</div>` +
+    (m.reply ? `<div class="reply"><b>Απάντηση υπευθύνου:</b>\n${esc(m.reply)}</div>` : `<div class="msg" style="background:var(--warn-soft);color:var(--warn);margin-top:8px">Δεν έχει απαντηθεί ακόμα.</div>`);
+};
+const lastCode = lsGet('paizoume-codes', [])[0]; if (lastCode) $('#codeIn').value = lastCode;
+
+/* ===================== Υπεύθυνος ===================== */
+$('#loginBtn').onclick = async () => {
+  $('#loginBtn').disabled = true;
+  try { await store.login($('#aEmail').value.trim(), $('#aPass').value); $('#aPass').value = ''; say('#loginMsg'); }
+  catch(e){ say('#loginMsg','err', esc(e.message)); }
+  finally { $('#loginBtn').disabled = false; }
+};
+$('#aPass').onkeydown = e => { if (e.key === 'Enter') $('#loginBtn').click(); };
+$('#logoutBtn').onclick = () => store.logout();
+const bLine = b => `<div><b>${esc(GAMES[b.game])}</b> · ${b.brk}ο διάλειμμα · ${esc(nice(b.date))}<div class="meta">${esc(b.name)} (${esc(b.cls)})${b.mates?.length ? ' με '+esc(b.mates.join(', ')) : ''}</div></div>`;
+function renderAdmin(){
+  $('#loginBox').hidden = isAdmin; $('#adminBox').hidden = !isAdmin;
+  if (isAdmin) $('#adminTab').hidden = false;
+  if (!isAdmin) return;
+  const today = iso(new Date());
+  const all = Object.values(state.bookings).filter(b => b.date >= today).sort((a,b) => (a.date+a.brk+a.game).localeCompare(b.date+b.brk+b.game));
+  const pend = all.filter(b => b.status === 'pending');
+  $('#pendList').innerHTML = pend.length ? pend.map(b => `<div class="item">${bLine(b)}<div class="row"><button class="btn ok small" data-ok="${b.id}">Έγκριση</button><button class="btn bad small" data-del="${b.id}">Απόρριψη</button></div></div>`).join('') : '<p class="hint">Καμία κράτηση σε αναμονή.</p>';
+  $('#allList').innerHTML = all.length ? all.map(b => `<div class="item">${bLine(b)}<div class="row"><span class="st ${b.status}">${b.status==='approved'?'Εγκρίθηκε':'Σε αναμονή'}</span><button class="btn bad small" data-del="${b.id}">Διαγραφή</button></div></div>`).join('') : '<p class="hint">Δεν υπάρχουν κρατήσεις.</p>';
+  const msgs = [...state.messages].sort((a,b) => (a.reply?1:0)-(b.reply?1:0) || b.created-a.created);
+  $('#msgList').innerHTML = msgs.length ? msgs.map(m => `<div class="item" style="display:block"><div class="meta">${esc(m.name)} (${esc(m.cls)}) · ${esc(fmtTime(m.created))} · κωδικός ${esc(m.id)}</div><div style="white-space:pre-wrap;margin:4px 0 8px">${esc(m.text)}</div>${m.reply ? `<div class="reply">${esc(m.reply)}</div><div class="row" style="margin-top:8px"><button class="btn bad small" data-delmsg="${esc(m.id)}">Διαγραφή</button></div>` : `<textarea data-rtext="${esc(m.id)}" placeholder="Η απάντησή σου…" style="min-height:70px"></textarea><div class="row" style="margin-top:8px"><button class="btn small" data-reply="${esc(m.id)}">Απάντηση</button><button class="btn bad small" data-delmsg="${esc(m.id)}">Διαγραφή</button></div>`}</div>`).join('') : '<p class="hint">Κανένα μήνυμα.</p>';
+  $('#sAuto').checked = !!state.settings.autoApprove;
+  $('#sDates').innerHTML = (state.settings.closed||[]).filter(d => d >= today).sort().map(d => `<span class="chip">${esc(nice(d))}<button type="button" aria-label="Αφαίρεση" data-undate="${d}">×</button></span>`).join('') || '<span class="hint">Καμία.</span>';
+}
+$('#adminBox').addEventListener('click', async e => {
+  const t = e.target.closest('button'); if (!t) return;
+  const d = t.dataset;
+  try {
+    if (d.ok) await store.updateBooking(d.ok, {status:'approved'});
+    else if (d.del){ if (confirm('Να διαγραφεί η κράτηση; Η θέση θα ελευθερωθεί.')) await store.deleteBooking(d.del); }
+    else if (d.delnews){ if (confirm('Να διαγραφεί η ανακοίνωση;')) await store.deleteNews(d.delnews); }
+    else if (d.delmsg){ if (confirm('Να διαγραφεί το μήνυμα;')) await store.deleteMessage(d.delmsg); }
+    else if (d.reply){ const txt = document.querySelector(`[data-rtext="${d.reply}"]`).value.trim(); if (txt) await store.reply(d.reply, txt); }
+    else if (d.undate) await store.saveSettings({closed:(state.settings.closed||[]).filter(x => x !== d.undate)});
+  } catch(err){ alert('Δεν έγινε η αλλαγή: ' + err.message); }
+});
+$('#nBtn').onclick = async () => {
+  const title = $('#nTitle').value.trim(), text = $('#nText').value.trim();
+  if (!title || !text) return alert('Γράψε τίτλο και κείμενο.');
+  await store.addNews({title, text, pinned:$('#nPin').checked});
+  $('#nTitle').value = ''; $('#nText').value = ''; $('#nPin').checked = false;
+};
+$('#sAuto').onchange = () => store.saveSettings({autoApprove:$('#sAuto').checked});
+$('#sDateBtn').onclick = () => { const v = $('#sDate').value; if (v) store.saveSettings({closed:[...new Set([...(state.settings.closed||[]), v])]}); $('#sDate').value = ''; };
+
+/* ===================== Εκκίνηση ===================== */
+listeners.push(() => { renderBook(); renderBoard(); renderNews(); renderAdmin(); renderBadges(); });
+store.start();
+
+
+</script>
+</body>
+</html>
