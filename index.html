@@ -62,7 +62,7 @@ h3{font-size:15px;margin:0 0 8px;color:var(--muted);font-weight:600;letter-spaci
 .game.pp svg{color:var(--pp)} .game.pod svg{color:var(--pod)}
 .game.pp[aria-pressed="true"]{border-color:var(--pp);background:var(--pp-soft)}
 .game.pod[aria-pressed="true"]{border-color:var(--pod);background:var(--pod-soft)}
-.brks{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.brks{display:grid;grid-template-columns:repeat(2,1fr);gap:8px}
 .brks .choice{text-align:center;min-width:0;padding:10px 6px}
 label{display:flex;flex-direction:column;gap:4px;font-weight:600;font-size:14px}
 input,textarea,select{font:inherit;font-weight:400;color:var(--ink);background:var(--bg);border:1px solid var(--line);border-radius:10px;padding:10px 12px;width:100%}
@@ -261,7 +261,7 @@ window.PAIZOUME_CONFIG = {
 <script type="module">
 const CFG = window.PAIZOUME_CONFIG || {};
 const GAMES = {pp:'Ping pong', pod:'Ποδοσφαιράκι'};
-const BRKS = [1,2,3];
+const BRKS = [1,2];
 const DAYN = ['Κυριακή','Δευτέρα','Τρίτη','Τετάρτη','Πέμπτη','Παρασκευή','Σάββατο'];
 const MON = ['Ιαν','Φεβ','Μαρ','Απρ','Μαΐ','Ιουν','Ιουλ','Αυγ','Σεπ','Οκτ','Νοε','Δεκ'];
 const $ = s => document.querySelector(s);
