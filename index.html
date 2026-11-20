@@ -233,7 +233,7 @@ window.PAIZOUME_CONFIG = {
       <label id="emailLbl">Email<input id="aEmail" type="email" autocomplete="username"></label>
       <label>Κωδικός<input id="aPass" type="password" autocomplete="current-password"></label>
       <div id="loginMsg" role="status"></div>
-      <div><button class="btn" id="loginBtn" type="button">Είσοδος</button></div>
+      <div class="row"><button class="btn" id="loginBtn" type="button">Είσοδος</button><button class="btn sec" id="forgotBtn" type="button">Ξέχασα τον κωδικό</button></div>
     </div>
     <div id="adminBox" class="stack" hidden>
       <div class="card"><h2>Όλες οι κρατήσεις</h2><p class="hint">Οι κρατήσεις εγκρίνονται αυτόματα. «Ακύρωση με μήνυμα»: ο μαθητής βλέπει την ακύρωση και το μήνυμά σου στο «Ποιος παίζει». «Διαγραφή»: σβήνει την κράτηση και ελευθερώνει τη θέση.</p><div id="allList"></div></div>
@@ -350,7 +350,8 @@ async function firebaseStore(){
       catch(e){ throw new Error('Λάθος email ή κωδικός.'); }
       if (CFG.adminEmail && email.toLowerCase() !== CFG.adminEmail.toLowerCase()){ await au.signOut(auth); throw new Error('Αυτός ο λογαριασμός δεν είναι υπευθύνου.'); }
     },
-    logout:() => au.signOut(auth)
+    logout:() => au.signOut(auth),
+    async resetPass(email){ await au.sendPasswordResetEmail(auth, email); }
   };
 }
 
@@ -484,6 +485,15 @@ $('#loginBtn').onclick = async () => {
   try { await store.login($('#aEmail').value.trim(), $('#aPass').value); $('#aPass').value = ''; say('#loginMsg'); }
   catch(e){ say('#loginMsg','err', esc(e.message)); }
   finally { $('#loginBtn').disabled = false; }
+};
+$('#forgotBtn').onclick = async () => {
+  if (store.demo) return say('#loginMsg','err','Στη δοκιμαστική λειτουργία ο κωδικός είναι 1234.');
+  const email = $('#aEmail').value.trim() || CFG.adminEmail || '';
+  if (!email) return say('#loginMsg','err','Γράψε πρώτα το email σου.');
+  $('#forgotBtn').disabled = true;
+  try { await store.resetPass(email); say('#loginMsg','ok',`Σου στείλαμε email στο ${esc(email)} με σύνδεσμο για νέο κωδικό. Κοίτα και στα Ανεπιθύμητα (Spam).`); }
+  catch(e){ say('#loginMsg','err','Δεν στάλθηκε το email. Δοκίμασε ξανά σε λίγο.'); }
+  finally { $('#forgotBtn').disabled = false; }
 };
 $('#aPass').onkeydown = e => { if (e.key === 'Enter') $('#loginBtn').click(); };
 $('#logoutBtn').onclick = () => store.logout();
