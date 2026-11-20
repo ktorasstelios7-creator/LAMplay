@@ -88,6 +88,9 @@ input:focus,textarea:focus,select:focus,button:focus-visible{outline:3px solid c
 .with{font-size:14px;color:var(--muted)}
 .st{display:inline-block;font-size:12px;font-weight:700;border-radius:999px;padding:1px 8px;margin-top:4px}
 .st.pending{background:var(--warn-soft);color:var(--warn)} .st.approved{background:var(--ok-soft);color:var(--ok)}
+.st.cancelled{background:#FDE2E1;color:#A61B1B}
+.note{font-size:14px;color:#A61B1B;margin-top:4px;white-space:pre-wrap}
+.cancelBox{width:100%;display:flex;flex-direction:column;gap:8px}
 .ann{border-left:5px solid var(--accent)}
 .ann.pin{border-left-color:var(--pp)}
 .ann .date{font-size:13px;color:var(--muted)}
@@ -186,8 +189,8 @@ window.PAIZOUME_CONFIG = {
       <h3>ΟΙ ΚΑΝΟΝΕΣ</h3>
       <ul class="rules">
         <li>Μία κράτηση ανά μαθητή τη μέρα, για να παίξουν όλοι.</li>
-        <li>Μπορείς να κλείσεις θέση για τις επόμενες πέντε σχολικές μέρες.</li>
-        <li>Η κράτηση ισχύει όταν εγκριθεί από τον υπεύθυνο (θα το δεις στο «Ποιος παίζει»).</li>
+        <li>Η κράτηση εγκρίνεται αμέσως και φαίνεται στο «Ποιος παίζει».</li>
+        <li>Αν κάποιος κλείνει θέση συνέχεια, ο υπεύθυνος μπορεί να ακυρώσει την κράτησή του με μήνυμα.</li>
         <li>Αν δεν μπορείτε να έρθετε, στείλτε μήνυμα στο «Ρώτα τον υπεύθυνο» για να ελευθερωθεί η θέση.</li>
         <li>Προσέχουμε τον εξοπλισμό και τον αφήνουμε τακτοποιημένο για τους επόμενους.</li>
       </ul>
@@ -233,8 +236,7 @@ window.PAIZOUME_CONFIG = {
       <div><button class="btn" id="loginBtn" type="button">Είσοδος</button></div>
     </div>
     <div id="adminBox" class="stack" hidden>
-      <div class="card"><h2>Για έγκριση</h2><div id="pendList"></div></div>
-      <div class="card"><h2>Όλες οι κρατήσεις</h2><p class="hint">Η διαγραφή ελευθερώνει τη θέση.</p><div id="allList"></div></div>
+      <div class="card"><h2>Όλες οι κρατήσεις</h2><p class="hint">Οι κρατήσεις εγκρίνονται αυτόματα. «Ακύρωση με μήνυμα»: ο μαθητής βλέπει την ακύρωση και το μήνυμά σου στο «Ποιος παίζει». «Διαγραφή»: σβήνει την κράτηση και ελευθερώνει τη θέση.</p><div id="allList"></div></div>
       <div class="card stack" style="gap:12px"><h2>Νέα ανακοίνωση</h2>
         <label>Τίτλος<input id="nTitle" maxlength="80"></label>
         <label>Κείμενο<textarea id="nText" maxlength="1200"></textarea></label>
@@ -243,7 +245,6 @@ window.PAIZOUME_CONFIG = {
         <div id="adminNews"></div></div>
       <div class="card"><h2>Μηνύματα μαθητών</h2><div id="msgList"></div></div>
       <div class="card stack" style="gap:12px"><h2>Ρυθμίσεις</h2>
-        <label class="toggle"><input type="checkbox" id="sAuto"> Αυτόματη έγκριση κρατήσεων</label>
         <div><h3>Μέρες χωρίς παιχνίδι (αργίες, εκδρομές, εξετάσεις)</h3>
           <div class="row"><input type="date" id="sDate" style="max-width:200px"><button class="btn sec small" id="sDateBtn" type="button">Προσθήκη</button></div>
           <div class="row" id="sDates" style="margin-top:10px"></div></div>
@@ -288,7 +289,7 @@ function demoStore(){
   const load = () => { const d = lsGet(KEY, null); if (d) state = {...state, ...d}; };
   const save = () => { lsSet(KEY, {bookings:state.bookings, announcements:state.announcements, settings:state.settings, messages:state.messages}); emit(); };
   load();
-  if (!state.announcements.length) state.announcements = [{id:'w', title:'Καλώς ήρθατε στο «Παίζουμε;»', text:'Κλείστε θέση για ping pong ή ποδοσφαιράκι για το 1ο, 2ο ή 3ο διάλειμμα. Καλή διασκέδαση!', pinned:true, created:Date.now()}];
+  if (!state.announcements.length) state.announcements = [{id:'w', title:'Καλώς ήρθατε στο «Παίζουμε;»', text:'Κλείστε θέση για ping pong ή ποδοσφαιράκι για το 1ο ή 2ο διάλειμμα. Καλή διασκέδαση!', pinned:true, created:Date.now()}];
   window.addEventListener('storage', e => { if (e.key === KEY){ load(); emit(); } });
   return {
     demo:true,
@@ -382,6 +383,7 @@ if (location.hash === '#admin'){ $('#adminTab').hidden = false; showTab('admin')
 /* ===================== Κράτηση ===================== */
 const sel = {date:null, game:null, brk:null};
 const taken = (d,g,b) => !!state.bookings[slotId(d,g,b)];
+const stBadge = k => k.status==='cancelled' ? '<span class="st cancelled">Ακυρώθηκε</span>' : '<span class="st approved">Εγκρίθηκε</span>';
 function renderBook(){
   const days = schoolDays(5);
   if (!days.includes(sel.date)) sel.date = days[0];
@@ -410,10 +412,10 @@ $('#bookBtn').onclick = async () => {
   if (clash) return say('#bookMsg','err',`Κάποιος από την παρέα σας έχει ήδη κράτηση εκείνη τη μέρα (${esc(GAMES[clash.game])}, ${clash.brk}ο διάλειμμα). Μία κράτηση τη μέρα, για να παίξουν όλοι.`);
   $('#bookBtn').disabled = true;
   try {
-    const status = state.settings.autoApprove ? 'approved' : 'pending';
+    const status = 'approved';
     const {date, game, brk} = sel;
     await store.createBooking({date, game, brk, name, cls, mates, status});
-    say('#bookMsg','ok',`Έκλεισες ${esc(GAMES[game])}, ${brk}ο διάλειμμα, ${esc(nice(date))}. ${status==='approved' ? 'Η κράτηση εγκρίθηκε.' : 'Θα εμφανιστεί ως εγκεκριμένη στο «Ποιος παίζει» μόλις την εγκρίνει ο υπεύθυνος.'}`);
+    say('#bookMsg','ok',`Έκλεισες ${esc(GAMES[game])}, ${brk}ο διάλειμμα, ${esc(nice(date))}. Η κράτηση εγκρίθηκε!`);
     lsSet('paizoume-me', {name, cls}); if (!$('#qName').value){ $('#qName').value = name; $('#qCls').value = cls; }
     document.querySelectorAll('.mate').forEach(i => i.value = ''); sel.brk = null; renderBook();
   } catch(e){
@@ -432,7 +434,7 @@ function renderBoard(){
   const cell = (g,b) => {
     const k = state.bookings[slotId(bDay,g,b)];
     if (!k) return `<td class="${g}"><span class="free">Ελεύθερο</span></td>`;
-    return `<td class="${g}"><div class="who">${esc(k.name)} <span class="with">· ${esc(k.cls)}</span></div>${k.mates?.length ? `<div class="with">με ${esc(k.mates.join(', '))}</div>` : ''}<span class="st ${k.status}">${k.status==='approved'?'Εγκρίθηκε':'Σε αναμονή'}</span></td>`;
+    return `<td class="${g}"><div class="who">${esc(k.name)} <span class="with">· ${esc(k.cls)}</span></div>${k.mates?.length ? `<div class="with">με ${esc(k.mates.join(', '))}</div>` : ''}${stBadge(k)}${k.status==='cancelled' && k.note ? `<div class="note">${esc(k.note)}</div>` : ''}</td>`;
   };
   $('#board').innerHTML = `<thead><tr><th></th><th>Ping pong</th><th>Ποδοσφαιράκι</th></tr></thead><tbody>${BRKS.map(b => `<tr><td class="brk">${b}ο</td>${cell('pp',b)}${cell('pod',b)}</tr>`).join('')}</tbody>`;
 }
@@ -449,7 +451,7 @@ function renderBadges(){
   const seen = lsGet('paizoume-seen', 0);
   const nNew = state.announcements.filter(a => a.created > seen).length;
   $('#newsBadge').hidden = !nNew || tab === 'news'; $('#newsBadge').textContent = nNew;
-  const p = Object.values(state.bookings).filter(b => b.status === 'pending').length + state.messages.filter(m => !m.reply).length;
+  const p = state.messages.filter(m => !m.reply).length;
   $('#pendBadge').hidden = !(isAdmin && p); $('#pendBadge').textContent = p;
 }
 
@@ -486,25 +488,26 @@ $('#loginBtn').onclick = async () => {
 $('#aPass').onkeydown = e => { if (e.key === 'Enter') $('#loginBtn').click(); };
 $('#logoutBtn').onclick = () => store.logout();
 const bLine = b => `<div><b>${esc(GAMES[b.game])}</b> · ${b.brk}ο διάλειμμα · ${esc(nice(b.date))}<div class="meta">${esc(b.name)} (${esc(b.cls)})${b.mates?.length ? ' με '+esc(b.mates.join(', ')) : ''}</div></div>`;
+let openCancel = null, autoSaved = false;
 function renderAdmin(){
   $('#loginBox').hidden = isAdmin; $('#adminBox').hidden = !isAdmin;
   if (isAdmin) $('#adminTab').hidden = false;
   if (!isAdmin) return;
   const today = iso(new Date());
   const all = Object.values(state.bookings).filter(b => b.date >= today).sort((a,b) => (a.date+a.brk+a.game).localeCompare(b.date+b.brk+b.game));
-  const pend = all.filter(b => b.status === 'pending');
-  $('#pendList').innerHTML = pend.length ? pend.map(b => `<div class="item">${bLine(b)}<div class="row"><button class="btn ok small" data-ok="${b.id}">Έγκριση</button><button class="btn bad small" data-del="${b.id}">Απόρριψη</button></div></div>`).join('') : '<p class="hint">Καμία κράτηση σε αναμονή.</p>';
-  $('#allList').innerHTML = all.length ? all.map(b => `<div class="item">${bLine(b)}<div class="row"><span class="st ${b.status}">${b.status==='approved'?'Εγκρίθηκε':'Σε αναμονή'}</span><button class="btn bad small" data-del="${b.id}">Διαγραφή</button></div></div>`).join('') : '<p class="hint">Δεν υπάρχουν κρατήσεις.</p>';
+  if (!state.settings.autoApprove && !autoSaved){ autoSaved = true; store.saveSettings({autoApprove:true}).catch(() => {}); }
+  $('#allList').innerHTML = all.length ? all.map(b => `<div class="item">${bLine(b)}<div class="row">${stBadge(b)}${b.status!=='cancelled' ? `<button class="btn sec small" data-cancel="${b.id}">Ακύρωση με μήνυμα</button>` : ''}<button class="btn bad small" data-del="${b.id}">Διαγραφή</button></div>${b.status==='cancelled' && b.note ? `<div class="note" style="width:100%">Μήνυμα: ${esc(b.note)}</div>` : ''}${openCancel===b.id ? `<div class="cancelBox"><textarea data-ctext="${b.id}" maxlength="300" style="min-height:70px">Η κράτηση ακυρώθηκε γιατί έχεις κλείσει πολλές φορές. Άφησε να παίξουν και άλλοι συμμαθητές σου.</textarea><div class="row"><button class="btn bad small" data-cancelok="${b.id}">Ακύρωση κράτησης</button><button class="btn sec small" data-cancelno="1">Πίσω</button></div></div>` : ''}</div>`).join('') : '<p class="hint">Δεν υπάρχουν κρατήσεις.</p>';
   const msgs = [...state.messages].sort((a,b) => (a.reply?1:0)-(b.reply?1:0) || b.created-a.created);
   $('#msgList').innerHTML = msgs.length ? msgs.map(m => `<div class="item" style="display:block"><div class="meta">${esc(m.name)} (${esc(m.cls)}) · ${esc(fmtTime(m.created))} · κωδικός ${esc(m.id)}</div><div style="white-space:pre-wrap;margin:4px 0 8px">${esc(m.text)}</div>${m.reply ? `<div class="reply">${esc(m.reply)}</div><div class="row" style="margin-top:8px"><button class="btn bad small" data-delmsg="${esc(m.id)}">Διαγραφή</button></div>` : `<textarea data-rtext="${esc(m.id)}" placeholder="Η απάντησή σου…" style="min-height:70px"></textarea><div class="row" style="margin-top:8px"><button class="btn small" data-reply="${esc(m.id)}">Απάντηση</button><button class="btn bad small" data-delmsg="${esc(m.id)}">Διαγραφή</button></div>`}</div>`).join('') : '<p class="hint">Κανένα μήνυμα.</p>';
-  $('#sAuto').checked = !!state.settings.autoApprove;
   $('#sDates').innerHTML = (state.settings.closed||[]).filter(d => d >= today).sort().map(d => `<span class="chip">${esc(nice(d))}<button type="button" aria-label="Αφαίρεση" data-undate="${d}">×</button></span>`).join('') || '<span class="hint">Καμία.</span>';
 }
 $('#adminBox').addEventListener('click', async e => {
   const t = e.target.closest('button'); if (!t) return;
   const d = t.dataset;
   try {
-    if (d.ok) await store.updateBooking(d.ok, {status:'approved'});
+    if (d.cancel){ openCancel = d.cancel; renderAdmin(); }
+    else if (d.cancelno){ openCancel = null; renderAdmin(); }
+    else if (d.cancelok){ const txt = document.querySelector(`[data-ctext="${d.cancelok}"]`).value.trim(); openCancel = null; await store.updateBooking(d.cancelok, {status:'cancelled', note:txt}); }
     else if (d.del){ if (confirm('Να διαγραφεί η κράτηση; Η θέση θα ελευθερωθεί.')) await store.deleteBooking(d.del); }
     else if (d.delnews){ if (confirm('Να διαγραφεί η ανακοίνωση;')) await store.deleteNews(d.delnews); }
     else if (d.delmsg){ if (confirm('Να διαγραφεί το μήνυμα;')) await store.deleteMessage(d.delmsg); }
@@ -518,7 +521,6 @@ $('#nBtn').onclick = async () => {
   await store.addNews({title, text, pinned:$('#nPin').checked});
   $('#nTitle').value = ''; $('#nText').value = ''; $('#nPin').checked = false;
 };
-$('#sAuto').onchange = () => store.saveSettings({autoApprove:$('#sAuto').checked});
 $('#sDateBtn').onclick = () => { const v = $('#sDate').value; if (v) store.saveSettings({closed:[...new Set([...(state.settings.closed||[]), v])]}); $('#sDate').value = ''; };
 
 /* ===================== Εκκίνηση ===================== */
